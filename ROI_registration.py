@@ -86,11 +86,11 @@ def ROI_registration(datapath, template, t1, b0, roi):
     warped = mapping.transform_inverse(template_img)
     warped = affine_diff2struct.transform_inverse(warped)
     template_diff_path = datapath + '/' + 'MNI152_diff'
-    save_nifti(template_diff_path, warped, affine_diff2struct.moving_grid2world)
+    save_nifti(template_diff_path, warped, b0_affine)
 
     warped_roi = mapping.transform_inverse(roi_img)
     warped_roi = affine_diff2struct.transform_inverse(warped_roi)
     roi_diff_path = datapath + '/' + roi + '_diff.nii.gz'
-    save_nifti(roi_diff_path, warped_roi, affine_diff2struct.moving_grid2world)
+    save_nifti(roi_diff_path, warped_roi, b0_affine)
 
     print("  Done!  ")
